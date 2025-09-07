@@ -50,5 +50,8 @@ if 'df' in st.session_state:
         filtered_df = st.session_state['df'][st.session_state['df']['PRODUCT'] == product]
     else:
         filtered_df = st.session_state['df']
-
     st.dataframe(filtered_df)
+
+    st.subheader("Sentiment Score by Product")
+    group = st.session_state['df'].groupby(["PRODUCT"])["SENTIMENT_SCORE"].mean()
+    st.bar_chart(group)
